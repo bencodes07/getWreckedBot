@@ -4,8 +4,19 @@
   "description": "",
   "main": "./src/main.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node ./src/main.js",
+    "dev": "nodemon ./src/main.js",
+    "deployCmds": "node ./src/deployCommands.js"
   },
   "author": "bencodes",
-  "license": "ISC"
+  "license": "ISC",
+  "devDependencies": {
+    "discord.js": "^13.7.0"
+  },
+  "dependencies": {
+    "@discordjs/rest": "^0.4.1",
+    "dotenv": "^16.0.1",
+    "fs": "^0.0.1-security",
+    "nodemon": "^2.0.16"
+  }
 }
