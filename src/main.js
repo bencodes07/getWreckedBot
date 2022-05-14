@@ -15,6 +15,7 @@ commandFiles.forEach((commandFile) => {
 	client.commands.set(command.data.name, command);
 })
 
+
 eventFiles.forEach(eventFile => {
   const event = require(`./events/${eventFile}`);
   client.on(event.name, (...args) => event.execute(...args));
