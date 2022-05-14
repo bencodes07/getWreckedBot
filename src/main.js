@@ -1,17 +1,23 @@
 require("dotenv").config()
 const fs = require("fs")
-const { Client, Collection, Intents } = require("discord.js")
+const { Client, Collection, Intents, MessageEmbed } = require("discord.js")
 
-const client = new Client({ intents:[Intents.FLAGS.GUILDS] })
+const client = new Client({ intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] })
 client.commands = new Collection() 
-const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js')); 
 
+const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js')); 
+const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 
 
 commandFiles.forEach((commandFile) => {
 	const command = require(`./commands/${commandFile}`);
 	client.commands.set(command.data.name, command);
 })
+
+eventFiles.forEach(eventFile => {
+  const event = require(`./events/${eventFile}`);
+  client.on(event.name, (...args) => event.execute(...args));
+});
 
 client.once("ready", () => {
   console.log(`Ready! Logged in as ${client.user.tag}! I'm on ${client.guilds.cache.size} guild(s)!`)
@@ -42,8 +48,5 @@ client.on("interactionCreate", async (interaction) => {
   }
 })
 
-client.on('guildMemberAdd', () => {
-  
-});
 
 client.login(process.env.BOT_TOKEN)
