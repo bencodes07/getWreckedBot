@@ -2,12 +2,13 @@ require("dotenv").config();
 const fs = require("fs");
 const { Client, Collection, Intents, MessageEmbed } = require("discord.js");
 
-const client = new Client({ intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
+const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGES] });
 client.commands = new Collection() ;
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js')); 
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 
+const { ruleChannel, ruleInteraction, sentMessage } = require("../src/commands/rules.js");
 
 commandFiles.forEach((commandFile) => {
 	const command = require(`./commands/${commandFile}`);
@@ -31,9 +32,8 @@ client.on("interactionCreate", async (interaction) => {
   const command = client.commands.get(interaction.commandName);
 
   if(command) {
-
     try {
-      //Wir führen den Command aus
+
       await command.execute(interaction);
     } catch (error) {
 
@@ -48,5 +48,39 @@ client.on("interactionCreate", async (interaction) => {
   }
 })
 
+// Rule Channel
+
+let botReacted = false;
+let userReacted = true;
+
+client.on("messageReactionAdd", async (reaction, user) => {  
+  if(reaction.message.channel.id === '793205320305344562') {
+    if(botReacted === true) {
+      const member = reaction.message.guild.members.cache.get(user.id);
+      member.roles.add("793202658977775636");
+      console.log('🔴 Role recieved! 🔴');
+      userReacted = true;
+      // ruleInteraction.deleteReply();
+      sentMessage.delete();
+      console.log('Deleted Messages!');
+    } else {
+      botReacted = true;
+    }
+  } else {
+    console.log('Not Rule Channel!');
+  }
+});
+
+client.on('messageReactionRemove', async (reaction, user) => {
+  if(reaction.message.channel.id === '793205320305344562') {
+    const member = reaction.message.guild.members.cache.get(user.id);
+    member.roles.remove("793202658977775636");
+    console.log('🔴 Role removed! 🔴');
+    userReacted = false;
+    
+  } else {
+    console.log('Not Rule Channel!');
+  }
+});
 
 client.login(process.env.BOT_TOKEN);
