@@ -1,6 +1,6 @@
 require("dotenv").config();
 const fs = require("fs");
-const { Client, Collection, Intents, MessageEmbed } = require("discord.js");
+const { Client, Collection, Intents, MessageEmbed, Interaction } = require("discord.js");
 
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGES] });
 client.commands = new Collection() ;
@@ -58,11 +58,10 @@ client.on("messageReactionAdd", async (reaction, user) => {
     if(botReacted === true) {
       const member = reaction.message.guild.members.cache.get(user.id);
       member.roles.add("793202658977775636");
-      console.log('🔴 Role recieved! 🔴');
+      console.log('🔴 Role received! 🔴');
       userReacted = true;
-      // ruleInteraction.deleteReply();
-      sentMessage.delete();
-      console.log('Deleted Messages!');
+
+      reaction.message.delete();
     } else {
       botReacted = true;
     }
@@ -71,13 +70,19 @@ client.on("messageReactionAdd", async (reaction, user) => {
   }
 });
 
+function deleteMessages(message) {
+  message.channel.bulkDelete(2);
+}
+
+
+
 client.on('messageReactionRemove', async (reaction, user) => {
   if(reaction.message.channel.id === '793205320305344562') {
     const member = reaction.message.guild.members.cache.get(user.id);
     member.roles.remove("793202658977775636");
     console.log('🔴 Role removed! 🔴');
     userReacted = false;
-    
+
   } else {
     console.log('Not Rule Channel!');
   }

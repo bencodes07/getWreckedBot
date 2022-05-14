@@ -2,6 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 let { userReacted } = require('../main.js');
 
+
 module.exports = {
   data: new SlashCommandBuilder().setName('rules').setDescription('Zeige dir die Regeln an'),
   async execute(interaction) {
@@ -85,5 +86,6 @@ module.exports = {
     await sentMessage.react(emoji);
 
     interaction.reply('**Lese dir die Regeln bitte einmal durch ;)**')
+    interaction.deleteReply();
   }
 }
