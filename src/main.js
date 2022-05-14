@@ -1,9 +1,9 @@
-require("dotenv").config()
-const fs = require("fs")
-const { Client, Collection, Intents, MessageEmbed } = require("discord.js")
+require("dotenv").config();
+const fs = require("fs");
+const { Client, Collection, Intents, MessageEmbed } = require("discord.js");
 
-const client = new Client({ intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] })
-client.commands = new Collection() 
+const client = new Client({ intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS] });
+client.commands = new Collection() ;
 
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js')); 
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
@@ -20,15 +20,15 @@ eventFiles.forEach(eventFile => {
 });
 
 client.once("ready", () => {
-  console.log(`Ready! Logged in as ${client.user.tag}! I'm on ${client.guilds.cache.size} guild(s)!`)
-  client.user.setActivity({name: "mit dem Code", type: "PLAYING"})
+  console.log(`Ready! Logged in as ${client.user.tag}! I'm on ${client.guilds.cache.size} guild(s)!`);
+  client.user.setActivity({name: "mit dem Code", type: "PLAYING"});
 })
 
 client.on("interactionCreate", async (interaction) => {
 
-  if(!interaction.isCommand()) return
+  if(!interaction.isCommand()) return;
 
-  const command = client.commands.get(interaction.commandName)
+  const command = client.commands.get(interaction.commandName);
 
   if(command) {
 
@@ -40,13 +40,13 @@ client.on("interactionCreate", async (interaction) => {
       console.error(error);
 
       if(interaction.deferred || interaction.replied) {
-          interaction.editReply('There was an error while executing this command!')
+          interaction.editReply('There was an error while executing this command!');
       } else {
-          interaction.reply('There was an error while executing this command!')
+          interaction.reply('There was an error while executing this command!');
       }
     }
   }
 })
 
 
-client.login(process.env.BOT_TOKEN)
+client.login(process.env.BOT_TOKEN);
