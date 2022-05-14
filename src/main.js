@@ -51,7 +51,6 @@ client.on("interactionCreate", async (interaction) => {
 // Rule Channel
 
 let botReacted = false;
-let userReacted = true;
 
 client.on("messageReactionAdd", async (reaction, user) => {  
   if(reaction.message.channel.id === '793205320305344562') {
@@ -59,30 +58,12 @@ client.on("messageReactionAdd", async (reaction, user) => {
       const member = reaction.message.guild.members.cache.get(user.id);
       member.roles.add("793202658977775636");
       console.log('🔴 Role received! 🔴');
-      userReacted = true;
 
       reaction.message.delete();
+      botReacted = false;
     } else {
       botReacted = true;
     }
-  } else {
-    console.log('Not Rule Channel!');
-  }
-});
-
-function deleteMessages(message) {
-  message.channel.bulkDelete(2);
-}
-
-
-
-client.on('messageReactionRemove', async (reaction, user) => {
-  if(reaction.message.channel.id === '793205320305344562') {
-    const member = reaction.message.guild.members.cache.get(user.id);
-    member.roles.remove("793202658977775636");
-    console.log('🔴 Role removed! 🔴');
-    userReacted = false;
-
   } else {
     console.log('Not Rule Channel!');
   }

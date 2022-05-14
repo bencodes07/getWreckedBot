@@ -78,7 +78,6 @@ module.exports = {
     .setFooter('Diese Regeln gelten für alle Mitglieder des Servers. Wenn du einverstanden bist klicke den grünen Haken');
 
     const ruleChannel = interaction.channel;
-    const ruleInteraction = interaction;
 
     const emoji = '✅';
 
