@@ -1,6 +1,6 @@
 require("dotenv").config();
 const fs = require("fs");
-const { Client, Collection, Intents, MessageEmbed, Interaction } = require("../node_modules/discord.js");
+const { Client, Collection, Intents, MessageEmbed, Interaction } = require("../node_modules/discord.js/src/index.js");
 
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGES] });
 client.commands = new Collection() ;
