@@ -1,6 +1,6 @@
 const { SlashCommandBuilder } = require("@discordjs/builders")
 const { MessageEmbed } = require("discord.js")
-const { QueryType } = require("discord-player")
+const { QueryType, Player, createQueue } = require("discord-player")
 
 module.exports = {
 	data: new SlashCommandBuilder()
@@ -27,9 +27,9 @@ module.exports = {
 				)
 		),
     async execute(client, interaction) {
-		if (!interaction.member.voice.channel) return interaction.editReply("You need to be in a VC to use this command")
+		// if (!interaction.member.voice.channel) return interaction.editReply("You need to be in a VC to use this command")
 
-		const queue = await client.player.createQueue(interaction.guild)
+		const queue = client.player.createQueue(interaction.guild)
 		if (!queue.connection) await queue.connect(interaction.member.voice.channel)
 
 		let embed = new MessageEmbed()
