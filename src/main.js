@@ -8,7 +8,7 @@ client.commands = new Collection() ;
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js')); 
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 
-const { ruleChannel, ruleInteraction, sentMessage } = require("../src/commands/rules.js");
+const memberCounter = require('./events/memberCounter.js')
 
 commandFiles.forEach((commandFile) => {
 	const command = require(`./commands/${commandFile}`);
@@ -24,6 +24,7 @@ eventFiles.forEach(eventFile => {
 client.once("ready", () => {
   console.log(`Ready! Logged in as ${client.user.tag}! I'm on ${client.guilds.cache.size} guild(s)!`);
   client.user.setActivity({name: "mit dem Code", type: "PLAYING"});
+  memberCounter(client);
 })
 
 client.on("interactionCreate", async (interaction) => {
