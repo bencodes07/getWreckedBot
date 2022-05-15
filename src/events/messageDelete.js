@@ -6,8 +6,13 @@ module.exports = {
    * @param {Message} message 
    */
   async execute(message) {
+    // check if message is older than 14 days
+    if (message.createdTimestamp < Date.now() - (1000 * 60 * 60 * 24 * 14)) {
+      console.log('Old Message deleted'); 
+      return;
+    }
     if(message.author.bot) return;
-
+    
 
     const log = new MessageEmbed()
     .setColor('36393f')
