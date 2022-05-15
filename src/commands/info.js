@@ -40,7 +40,7 @@ module.exports = {
         const member = interaction.options.getMember("user")
         interaction.reply({embeds: [
           new MessageEmbed()
-          .setTitle(`Information for ${member.user.toString()}`)
+          .setTitle(`Information for <@${interaction.user.id}>`)
           .setThumbnail(member.user.avatarURL({dynamic: true}))
           .setColor(member.displayColor)
           .addFields([
