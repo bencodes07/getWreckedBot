@@ -18,5 +18,17 @@ module.exports = {
         .setColor('AQUA')
       ]
     });
+
+    member.guild.channels.cache.get('793206879454363748').send({
+      embeds: [
+        new MessageEmbed()
+        .setThumbnail(member.user.displayAvatarURL())
+        .setTitle('Member joined')
+        .setDescription(`<@${member.id}> ${member.tag}`)
+        .addField('Account Age', `${moment(member.user.createdTimestamp).fromNow()}`)
+        .setFooter(`ID: ${member.guild.id}`)
+        .setTimestamp()
+      ]
+    });
   }
 }
