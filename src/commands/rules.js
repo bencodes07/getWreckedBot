@@ -1,7 +1,5 @@
 const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
-let { userReacted } = require('../main.js');
-
 
 module.exports = {
   data: new SlashCommandBuilder().setName('rules').setDescription('Zeige dir die Regeln an'),
