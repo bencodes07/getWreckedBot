@@ -1,9 +1,12 @@
 require("dotenv").config();
 const fs = require("fs");
-const { Client, Collection, Intents, MessageEmbed, Interaction } = require("discord.js");
+const { Client, Collection, Intents } = require("discord.js");
 const { Player } = require("discord-player");
+
 const client = new Client({ partials: ['MESSAGE', 'CHANNEL', 'REACTION'], intents:[Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MEMBERS, Intents.FLAGS.GUILD_MESSAGE_REACTIONS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_VOICE_STATES] });
-client.commands = new Collection() ;
+client.commands = new Collection();
+client.voicegenerator = new Collection();
+
 const commandFiles = fs.readdirSync('./src/commands').filter(file => file.endsWith('.js')); 
 const eventFiles = fs.readdirSync('./src/events').filter(file => file.endsWith('.js'));
 const memberCounter = require('./events/memberCounter.js');
@@ -31,6 +34,7 @@ client.player = new Player(client, {
     highWaterMark: 1 << 25
   }
 }) 
+
 
 client.on("interactionCreate", async (interaction) => {
 
