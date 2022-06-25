@@ -11,7 +11,7 @@ module.exports = {
       console.log('Old Message deleted'); 
       return;
     }
-    if(message.author.bot) return;
+    if(message.author == 'GetWrecked Musiker') return;
     
 
     const log = new MessageEmbed()

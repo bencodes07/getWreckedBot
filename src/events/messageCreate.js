@@ -8,8 +8,7 @@ module.exports = {
   async execute(message) {
     if(message.channel.type === 'dm' || message.author.bot) return;
 
-    const logChannel = message.guild.channels.cache.get('976154709708640296');
-    let words = ['hurensohn', 'bastard', 'huan', 'reichsgenosse', 'schwarzen', 'opfer', 'assi', 'penis', 'blyat', 'hartmann', 'porn', 'porno', 'scheisse', 'scheiße', 'dick', 'shit', 'hs', 'scheiss', 'scheiß', 'yarak', 'jarak', 'transe', 'fotze', 'nuttensohn', 'nutte', 'ficken', 'hure', 'huren', 'ficksohn', 'nuttenficker', 'verfickt', 'bastardsohn', 'hitlerd', 'niger', 'nigger', ''];
+    let words = ['hurensohn', 'bastard', 'huan', 'reichsgenosse', 'schwarzen', 'opfer', 'assi', 'penis', 'blyat', 'hartmann', 'porn', 'porno', 'scheisse', 'scheiße', 'dick', 'shit', 'hs', 'scheiss', 'scheiß', 'yarak', 'jarak', 'transe', 'fotze', 'nuttensohn', 'nutte', 'ficken', 'hure', 'huren', 'ficksohn', 'nuttenficker', 'verfickt', 'bastardsohn', 'hitler', 'niger', 'nigger', 'nigga', 'lutscher', 'du schwanz', 'deine mutter'];
 
     let foundInText = false;
     for(let i in words) {
@@ -18,7 +17,8 @@ module.exports = {
       }
     }
 
-    if(foundInText) {
+    if(foundInText === true) {
+      const logChannel = message.guild.channels.cache.get('976154709708640296');
       const logEmbed = new MessageEmbed()
       .setDescription(`**<@${message.author.id}> said a bad word!**`)
       .addField('Message:', message.content)
