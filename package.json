@@ -24,5 +24,9 @@
   },
   "devDependencies": {
     "discord.js": "13.7.0"
+  },
+  "repository": {
+  "type": "git",
+  "url": "git+link"
   }
 }
