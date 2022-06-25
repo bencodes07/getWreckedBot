@@ -20,7 +20,7 @@ module.exports = {
       ]
     });
 
-    member.guild.channels.cache.get('793206879454363748').send({
+    member.guild.channels.cache.get('976154709708640296').send({
       embeds: [
         new MessageEmbed()
         .setThumbnail(member.user.displayAvatarURL())
