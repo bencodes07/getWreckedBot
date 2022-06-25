@@ -11,7 +11,7 @@
   "author": "bencodes",
   "license": "ISC",
   "dependencies": {
-    "discord.js": "13.8.1",
+    "discord.js": "*",
     "@discordjs/rest": "^0.4.1",
     "discord-player": "^5.2.2",
     "dotenv": "^16.0.1",
@@ -24,7 +24,7 @@
     "npm": "*"
   },
   "devDependencies": {
-    "discord.js": "13.8.1"
+    "discord.js": "*"
   },
   "repository": {
     "type": "git",
