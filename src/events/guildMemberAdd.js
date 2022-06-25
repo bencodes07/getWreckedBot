@@ -7,6 +7,7 @@ module.exports = {
    * @param {GuildMember} member
    */
   execute(member) {
+    console.log('Member joined!');
     const memberCreated = moment(member.user.createdTimestamp).format('DD.MM.YYYY');
     member.guild.channels.cache.get('793200713319972904').send({
       embeds: [
