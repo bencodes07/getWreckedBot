@@ -1,1 +1,1 @@
-Worker: node ./src/main.js && npm install
+Worker: node ./src/main.js
