@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { MessageEmbed } = require('discord.js');
 
 module.exports = {
-  data: new SlashCommandBuilder().setName('rules').setDescription('Zeige dir die Regeln an'),
+  data: new SlashCommandBuilder().setName('rules').setDescription('Zeige dir die Regeln an').setDefaultMemberPermissions(PermissionFlagsBits.SendMessages),
   async execute(interaction) {
     var embed = new MessageEmbed()
     .setTitle('Regeln dieses Servers:')
