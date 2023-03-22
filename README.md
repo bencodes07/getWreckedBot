@@ -1,5 +1,5 @@
 # GetWreckedBot
-GetWreckedBot is a Discord bot designed for use on a specific server. It provides several useful features through slash commands, including retrieving information about users and servers, displaying server rules, and monitoring Twitch streams.
+GetWreckedBot is a Discord bot designed for use on my discord server. It provides several useful features through slash commands, including retrieving information about users and servers, displaying server rules, and monitoring Twitch streams.
 
 ### Installation
 To use GetWreckedBot, you'll need to do the following:
